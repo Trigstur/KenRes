@@ -1,0 +1,9 @@
+{
+  "name": "KenRes",
+  "description": "Kenteken Research Tool",
+  "version": "0.0.1",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "readline": "^1.3.0"
+  }
+}
