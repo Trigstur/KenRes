@@ -16,8 +16,9 @@ readline = require("readline").createInterface({
         n[o] = "~" === r ? cluster : [`${e.charAt(parseInt(o))}`]
 
     }
-
-    console.log(`[ ${pack.name} ] Begonnen aan doorzoeking \n`), setInterval(() => {
+	
+    console.log(`[ ${pack.name} ] Begonnen aan doorzoeking \n`)
+	setInterval(() => {
         n[0].forEach(function(e) {
             n[1].forEach(function(o) {
                 n[2].forEach(function(r) {
@@ -27,13 +28,14 @@ readline = require("readline").createInterface({
                                 fetch("https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken=" + e + o + r + t + c + n).catch(e => console.error(e)).then(e => e.json()).then(e => {
                                     try {
                                         null !== e[0].kenteken && console.log(`[ ${e[0].kenteken} ] [ ${e[0].merk} ${e[0].handelsbenaming} ] [ ${e[0].eerste_kleur} ]`)
-                                    } catch (e) {}
+								} catch (e) {} 
                                 })
+								
                             })
                         })
                     })
                 })
             })
         })
-    }, 3333), readline.close()
+    }, 3000), readline.close()
 });
