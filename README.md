@@ -21,7 +21,9 @@ cd KenRes
 php index.php (plate)
 ```
 
-5. You may define missing characters from the plate you are looking up with `~` 
+- You may define missing characters from the plate you are looking up with `#` 
+- You may define missing numerics from the plate you are looking up with `@` 
+- You may define missing numerics/characters from the plate you are looking up with `~` 
 
 Example 
 
@@ -31,7 +33,7 @@ php index.php GH~45H~
 or
 
 ```
-php index.php GH-545-H~
+php index.php GH-5@5-H#
 ```
 
 ### Dependecies 
