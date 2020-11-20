@@ -1,4 +1,4 @@
-﻿<?php 
+<?php
 // Trigstur (c) 2020
 // Using opendata.rdw.nl
 
@@ -7,24 +7,37 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 function assume($brick)
 {
-    $brick = strtoupper($brick);  
+  
+    $brick = strtoupper($brick);
     $brick = str_replace("-", "", $brick);
+    
+    $numclus = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    $charclus = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     $cluster = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
     for ($o = 0;$o <= 5;++$o)
     {
-        if ($brick[$o] === "~") 
-        {
-            $n[$o] = $cluster;
-        }
-        else
-        {
-            $n[$o] = ["$brick[$o]"];
-        }
+
+      switch ($brick[$o]) {
+        case '~':
+          $n[$o] = $cluster;
+          break;
+        case '@':
+          $n[$o] = $numclus;
+        break;
+        case '#':
+          $n[$o] = $charclus;
+        break;
+        default:
+          $n[$o] = ["$brick[$o]"];
+          break;
+      }
+
     }
 
     print ("\n [!] => Looking up \n \n");
-    $file = fopen($brick, "w") or print ("[!] => Error : cannot generate file"); 
-    foreach ($n[0] as $val[0]) 
+    $file = fopen($brick, "w") or print ("[!] => Error : cannot generate file");
+    foreach ($n[0] as $val[0])
     {
         foreach ($n[1] as $val[1])
         {
@@ -43,7 +56,7 @@ function assume($brick)
                                 print "[+] => " . $obj[0]['kenteken'] . " \n " . $obj[0]['merk'] . " " . $obj[0]['handelsbenaming'] . " [" . $obj[0]['eerste_kleur'] . "] \n\n";
                                 fwrite($file, $obj[0]['kenteken'] . " => " . $obj[0]['merk'] . " " . $obj[0]['handelsbenaming'] . " [" . $obj[0]['eerste_kleur'] . "] \n");
                             }
-                            sleep(1); // Timeout to prevent overflowing 
+                            sleep(1); // Timeout to prevent overflowing
                         }
                     }
                 }
@@ -57,13 +70,13 @@ function assume($brick)
 
 if (strlen($inp) >= 6)
 {
-    assume($inp); 
+    assume($inp);
 }
 else
 {
     print ("[!] => Error : Given plate is not defined or not the required length \n");
     print (" ( Min Length = 6 \n");
     print (" ( Current Length = " . strlen($inp));
-} 
+}
 
 ?>
